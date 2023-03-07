@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { GetAllDogs } from '../src/services/GetDataDogs.service'
+import { FilterBreedsDogs } from './components/FilterBreedsDogs'
 import { ListAllDogs } from './components/ListAllDogs'
 
 function App () {
@@ -15,9 +16,13 @@ function App () {
   }, [])
 
   return (
-    <div>
-      <h1>Dog App</h1>
-      <ListAllDogs dataDogs={dataDogs} />
+    <div className='container mx-auto my-10 '>
+      <div className='items-center'>
+        <h1 className='text-orange-600 text-5xl font-bold text-center mb-10'>Dog App</h1>
+        <FilterBreedsDogs dataDogs={dataDogs} />
+        <ListAllDogs dataDogs={dataDogs} />
+      </div>
+
     </div>
   )
 }
