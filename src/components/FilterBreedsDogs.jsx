@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Select, { components } from 'react-select'
+import { firstWordUppercase } from '../utils/firstWordUppercase'
 
 const InputOption = ({
   getStyles,
@@ -44,49 +45,48 @@ const InputOption = ({
       getStyles={getStyles}
       innerProps={props}
     >
-      <input type='checkbox' checked={isSelected} />
+      <input type='checkbox' checked={isSelected} readOnly />
       {children}
     </components.Option>
   )
 }
 
-export const FilterBreedsDogs = ({ dataDogs }) => {
-  const [selectedOptions, setSelectedOptions] = useState([])
+export const FilterBreedsDogs = ({ dataDogs, setSelectedOptions }) => {
   const [optionDogs, setOptionsDogs] = useState([])
-  console.log('selectedOptions', selectedOptions)
+
   useEffect(() => {
     if (dataDogs.length) {
-      console.log('nuevo arreglo de opciones')
       const arrayOptions = []
       dataDogs.map((name) => (
         arrayOptions.push({
           value: name.name,
-          label: name.name
+          label: firstWordUppercase(name.name)
         })
       ))
       setOptionsDogs(arrayOptions)
-      console.log('arrayOptions', arrayOptions)
     }
   }, [dataDogs])
 
   return (
-    <div>
-      <Select
-        defaultValue={selectedOptions}
-        isMulti
-        closeMenuOnSelect={false}
-        hideSelectedOptions={false}
-        onChange={(options) => {
-          if (Array.isArray(options)) {
-            setSelectedOptions(options.map((opt) => opt.value))
-          }
-        }}
-        options={optionDogs}
-        components={{
-          Option: InputOption
-        }}
-      />
-      {/* <pre>{JSON.stringify({ selected: selectedOptions }, null, 2)}</pre> */}
+    <div className='flex'>
+
+      <div className='w-[90%]'>
+        <Select
+          defaultValue={[]}
+          isMulti
+          closeMenuOnSelect={false}
+          hideSelectedOptions={false}
+          onChange={(options) => {
+            if (Array.isArray(options)) {
+              setSelectedOptions(options.map((opt) => opt.value))
+            }
+          }}
+          options={optionDogs}
+          components={{
+            Option: InputOption
+          }}
+        />
+      </div>
     </div>
   )
 }

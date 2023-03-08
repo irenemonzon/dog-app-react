@@ -1,5 +1,6 @@
+import { firstWordUppercase } from '../utils/firstWordUppercase'
+
 export const ListAllDogs = ({ dataDogs }) => {
-  console.log('dataDogs', dataDogs)
   return (
     <div className='mt-32'>
       {
@@ -15,7 +16,7 @@ export const ListAllDogs = ({ dataDogs }) => {
                             <img className='h-[200px] w-[200px]' src={dog.DogImg} alt={dog.name} />
                           </li>
                           <li>
-                            <span>{dog.name}</span>
+                            <span> Raza: {firstWordUppercase(dog.name)}</span>
                           </li>
 
                         </ul>
