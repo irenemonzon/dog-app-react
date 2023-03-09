@@ -1,52 +1,68 @@
 import { useEffect, useState } from 'react'
 import { GetAllDogs } from '../src/services/GetDataDogs.service'
-import { FilterBreedsDogs } from './components/FilterBreedsDogs'
+import { CheckboxBreeds } from './components/CheckboxBreeds'
 import { ListAllDogs } from './components/ListAllDogs'
+import { Loading } from './components/Loading'
+import { getAll } from './services/getServiceNameDogs.service'
 
 function App () {
   const [dataDogs, setDataDogs] = useState([])
-  const [selectedOptions, setSelectedOptions] = useState([])
-  const [dataFilter, setDataFilter] = useState([])
+  const [dataFilterBreeds, setDataFiterBreeds] = useState([])
   const [arrayDogs, setArrayDogs] = useState([])
-  // console.log('selectedOptions', selectedOptions)
-  console.log('dataFilter', dataFilter)
-  console.log('dataFilter.length', dataFilter.length)
+  const [listBreedsDogs, setListBreedsDogs] = useState([])
 
   const getServicesDogs = async () => {
     const getDataDogs = await GetAllDogs()
     setDataDogs(getDataDogs)
   }
+  const getAllService = async () => {
+    const getDataAll = await getAll()
+    setListBreedsDogs(getDataAll)
+  }
 
   useEffect(() => {
     getServicesDogs()
+    getAllService()
   }, [])
 
   useEffect(() => {
-    if (selectedOptions.length) {
-      let arrayFilter = []
-      arrayFilter = dataDogs.filter(el => {
-        return selectedOptions.filter(x => el.name === x).length > 0
-      })
-      setDataFilter(arrayFilter)
-    } else {
-      setDataFilter([])
-    }
-  }, [selectedOptions, dataDogs])
-
-  useEffect(() => {
-    if (dataFilter.length > 0) {
-      setArrayDogs(dataFilter)
+    if (dataFilterBreeds.length > 0) {
+      setArrayDogs(dataFilterBreeds)
     } else {
       setArrayDogs(dataDogs)
     }
-  }, [dataFilter, dataDogs])
+  }, [dataFilterBreeds, dataDogs])
 
   return (
-    <div className='container mx-auto my-10 '>
+    <div className='container mx-auto my-10 xl:mx-20'>
       <div className='items-center'>
         <h1 className='text-orange-600 text-5xl font-bold text-center mb-10'>Dog App</h1>
-        <FilterBreedsDogs dataDogs={dataDogs} selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
-        <ListAllDogs dataDogs={arrayDogs} />
+
+        {arrayDogs.length && listBreedsDogs.length
+          ? (
+            <div className='flex justify-between'>
+              <div className='w-1/4 '>
+                <CheckboxBreeds
+                  listBreedsDogs={listBreedsDogs}
+                  dataFilterBreeds={dataFilterBreeds}
+                  setDataFiterBreeds={setDataFiterBreeds}
+                />
+              </div>
+
+              <div className='3/4'>
+                <ListAllDogs
+                  dataDogs={arrayDogs}
+                />
+              </div>
+            </div>
+
+            )
+          : (
+
+            <Loading />
+
+            )}
+
       </div>
 
     </div>
