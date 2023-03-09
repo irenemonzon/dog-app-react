@@ -36,7 +36,7 @@ function App () {
   return (
     <div className='container mx-auto my-10 xl:mx-20'>
       <div className='items-center'>
-        <h1 className='text-orange-600 text-5xl font-bold text-center mb-10'>Dog App</h1>
+        <h1 className='text-orange-700 text-6xl font-bold text-center mb-10'>Dog App</h1>
 
         {arrayDogs.length && listBreedsDogs.length
           ? (

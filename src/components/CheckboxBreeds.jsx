@@ -19,7 +19,7 @@ export const CheckboxBreeds = ({ listBreedsDogs, dataFilterBreeds, setDataFiterB
         DogImg: value
       })
       )
-      setDataFiterBreeds([...dataFilterBreeds, ...ArrayImage])
+      setDataFiterBreeds([...ArrayImage, ...dataFilterBreeds])
     } else {
       const deleteBreeds = dataFilterBreeds.filter(item => item.name !== name)
       setDataFiterBreeds(deleteBreeds)
@@ -27,8 +27,8 @@ export const CheckboxBreeds = ({ listBreedsDogs, dataFilterBreeds, setDataFiterB
   }
 
   return (
-    <div className='mt-10 md:mr-8 border-2 border-gray-200 rounded-md py-4 pl-4 '>
-      <p className='mb-4'>Filtrar</p>
+    <div className='mt-10 md:mr-8 border-2 border-blue-500 rounded-md py-4 pl-4 bg-white '>
+      <p className='mb-4 font-bold text-orange-700 text-lg'>Filtrar</p>
       <ul className='xs:max-h-48 sm:max-h-96 overflow-y-auto overflow-x-hidden'>
         {listBreedsDogs.map((breed) => (
           <li key={breed.name}>

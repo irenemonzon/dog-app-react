@@ -3,7 +3,7 @@ export const Loading = () => {
     <div className='flex flex-col justify-center  pt-20'>
       <div className='flex justify-center mb-4'>
         <div aria-label='Loading...' role='status'>
-          <svg className='h-12 w-12 animate-spin stroke-indigo-500' viewBox='0 0 256 256'>
+          <svg className='h-12 w-12 animate-spin stroke-black' viewBox='0 0 256 256'>
             <line x1='128' y1='32' x2='128' y2='64' strokeLinecap='round' strokeLinejoin='round' strokeWidth='24' />
             <line
               x1='195.9'
@@ -48,7 +48,7 @@ export const Loading = () => {
         </div>
       </div>
       <div className='text-center'>
-        <p className='text-neutral-700'>Cargando data ...</p>
+        <p className='text-neutral-700 text-lg font-bold'>Cargando data ...</p>
       </div>
 
     </div>
