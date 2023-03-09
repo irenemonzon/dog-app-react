@@ -27,9 +27,9 @@ export const CheckboxBreeds = ({ listBreedsDogs, dataFilterBreeds, setDataFiterB
   }
 
   return (
-    <div className='mt-10 mr-8  border-2 border-gray-200 rounded-md py-4 pl-4 '>
+    <div className='mt-10 md:mr-8 border-2 border-gray-200 rounded-md py-4 pl-4 '>
       <p className='mb-4'>Filtrar</p>
-      <ul className='max-h-96 overflow-y-auto '>
+      <ul className='xs:max-h-48 sm:max-h-96 overflow-y-auto overflow-x-hidden'>
         {listBreedsDogs.map((breed) => (
           <li key={breed.name}>
             <label>

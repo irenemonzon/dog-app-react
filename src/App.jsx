@@ -40,8 +40,8 @@ function App () {
 
         {arrayDogs.length && listBreedsDogs.length
           ? (
-            <div className='flex justify-between'>
-              <div className='w-1/4 '>
+            <div className='flex xs:flex-col sm:flex-row sm:justify-between'>
+              <div className='xs:w-full sm:w-1/4 xs:ml-4 md:ml-0  xxl:w-1/5'>
                 <CheckboxBreeds
                   listBreedsDogs={listBreedsDogs}
                   dataFilterBreeds={dataFilterBreeds}
@@ -49,7 +49,7 @@ function App () {
                 />
               </div>
 
-              <div className='3/4'>
+              <div className='xs:w-full sm:w-3/4 xxl:w-4/5'>
                 <ListAllDogs
                   dataDogs={arrayDogs}
                 />
