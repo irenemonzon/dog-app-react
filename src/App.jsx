@@ -34,7 +34,7 @@ function App () {
   }, [dataFilterBreeds, dataDogs])
 
   return (
-    <div className='container mx-auto my-10 xl:mx-20'>
+    <div className='container mx-auto my-10 xxl:mx-20 overflow-x-hidden'>
       <div className='items-center'>
         <h1 className='text-orange-700 text-6xl font-bold text-center mb-10'>Dog App</h1>
 
